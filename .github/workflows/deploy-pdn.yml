@@ -12,7 +12,7 @@ on:
 jobs:
   firebase-deploy:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/main'
     steps:
     - uses: actions/checkout@master
     - uses: actions/setup-node@master
