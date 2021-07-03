@@ -1,0 +1,27 @@
+name: DEPLOY_FUNCTIONS_PDN
+
+on: 
+  workflow_dispatch:
+    inputs:
+      deploy-message:
+        description: 'Tags for firebase hosting deploy'
+        required: true
+        default: 'main'
+        
+        
+jobs:
+  firebase-deploy:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    steps:
+    - uses: actions/checkout@master
+    - uses: actions/setup-node@master
+      with:
+        node-version: '12.x'
+    - run: npm install 
+    - run: ls -l
+    - uses: w9jds/firebase-action@master
+      with:
+        args: deploy --only functions --project=default --message \"${{ github.event.inputs.deploy-message }}  - Deployed from GitHub Actions \"
+      env:
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
