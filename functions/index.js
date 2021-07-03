@@ -21,7 +21,7 @@ exports.scheduledFunction = functions.pubsub.schedule('every 1 mins').onRun(asyn
                         console.log("Fecha de ultima acualizacion:", new Date(data.val().iotData.lastUpdated))
                         console.log("El tiempo de ultima actualziacion es mayor a 1 minuto?", data.val().iotData.lastUpdated > timeToCompare.getTime())
                         data.ref.update({
-                            active: false
+                            online: false
                         })
                     } else {
                         console.log("Se encuentra online", data.key)
