@@ -19,10 +19,8 @@ jobs:
       with:
         node-version: '14.x'
     - name: NPM INSTALL
-      run: |
-        ls -l
-        npm install
-        working-directory: ./functions
+      run: npm install
+      working-directory: ./functions
     - run: ls -l
     - uses: w9jds/firebase-action@master
       with:
